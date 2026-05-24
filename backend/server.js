@@ -5,8 +5,21 @@ const morgan = require('morgan');
 const path = require('path');
 
 // Initialize DB
-const { initializeDatabase } = require('./src/db/init');
+const { initializeDatabase, getDb } = require('./src/db/init');
 initializeDatabase();
+
+// Auto-seed if no users exist
+const bcrypt = require('bcryptjs');
+const db = getDb();
+const userCount = db.prepare('SELECT COUNT(*) as count FROM users').get();
+if (userCount.count === 0) {
+  console.log('🌱 No users found, seeding database...');
+  const insertUser = db.prepare(`INSERT INTO users (name, email, password_hash, role) VALUES (?, ?, ?, ?)`);
+  insertUser.run('Admin User', 'admin@warehouseiq.com', bcrypt.hashSync('Admin@123', 10), 'admin');
+  insertUser.run('Jane Manager', 'manager@warehouseiq.com', bcrypt.hashSync('Manager@123', 10), 'manager');
+  insertUser.run('Bob Staff', 'staff@warehouseiq.com', bcrypt.hashSync('Staff@123', 10), 'staff');
+  console.log('✅ Users seeded');
+}
 
 const app = express();
 
