@@ -6,7 +6,7 @@ const api = axios.create({
     'Content-Type': 'application/json',
   },
 });
-
+console.log('API URL:', import.meta.env.VITE_API_URL);
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('wiq_token');
 
