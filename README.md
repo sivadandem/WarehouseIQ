@@ -1,53 +1,6 @@
-# WarehouseIQ 🏭
-
-> Smart Inventory & Warehouse Management System — full-stack, dark-themed, role-based.
-
-![Stack](https://img.shields.io/badge/Frontend-React%20%2B%20Vite-61DAFB?logo=react)
-![Stack](https://img.shields.io/badge/Backend-Node.js%20%2B%20Express-339933?logo=node.js)
-![Stack](https://img.shields.io/badge/Database-SQLite-003B57?logo=sqlite)
-
 ---
 
-## 📸 Features
-
-| Feature | Description |
-|---|---|
-| 🔐 JWT Auth | Login with role-based access (Admin / Manager / Staff) |
-| 📦 Products | Full CRUD — SKU, category, price, stock threshold |
-| 📊 Dashboard | Live stats, charts, low-stock alerts, recent movements |
-| 📥📤 Stock | Stock IN / OUT with negative-stock prevention & full history |
-| 🏢 Suppliers | Supplier management with product linkage |
-| 🛒 Purchase Orders | Create POs with line items, approve & receive workflow |
-| 🏗️ Warehouses | Manage warehouse locations with capacity tracking |
-| 📈 Reports | Inventory, low-stock, movements & supplier analytics |
-| 🔍 Audit Logs | Immutable audit trail of every action (admin only) |
-
----
-
-## 🏗️ Architecture
-
-```
-warehouseiq/
-├── frontend/          # React + Vite + Tailwind CSS
-│   └── src/
-│       ├── api/       # Axios client + all endpoint functions
-│       ├── components/ # Layout, UI components (Modal, StatCard, etc.)
-│       ├── context/   # AuthContext (JWT + RBAC)
-│       ├── pages/     # Dashboard, Products, Stock, Suppliers…
-│       └── utils/     # formatCurrency, formatDateTime helpers
-│
-└── backend/           # Express.js REST API
-    └── src/
-        ├── controllers/ # Business logic per resource
-        ├── db/          # SQLite init + seed data
-        ├── middleware/  # JWT auth, error handler, logger
-        ├── routes/      # Express routers
-        └── validations/ # Input validation rules
-```
-
----
-
-## 🚀 Quick Start
+## 🚀 Quick Start (Local)
 
 ### Prerequisites
 - Node.js 18+
@@ -79,9 +32,20 @@ Open **http://localhost:5173** in your browser.
 
 | Role | Email | Password |
 |------|-------|----------|
-| **Admin** | admin@warehouseiq.com | Admin@123 |
-| **Manager** | manager@warehouseiq.com | Manager@123 |
-| **Staff** | staff@warehouseiq.com | Staff@123 |
+| **Admin** | sivadandem7@warehouseiq.com | Admin@123 |
+| **Manager** | kutty@warehouseiq.com | Manager@123 |
+| **Staff** | nitin@warehouseiq.com | Staff@123 |
+
+---
+
+## 🏭 Sample Data (Indian Companies)
+
+| Type | Examples |
+|------|---------|
+| **Warehouses** | Mumbai Central Warehouse, Delhi NCR Hub, Bengaluru South Depot |
+| **Suppliers** | Tata Electronics, Godrej Interio, Dixon Technologies, Mahindra Logistics, Bosch India |
+| **Products** | Laptop Inspiron 15, Godrej Office Chair, Forklift Battery 48V, ISI Safety Helmet… |
+| **Purchase Orders** | PO-2024-001 (Dixon Technologies), PO-2024-002 (Godrej Interio), PO-2024-003 (Mahindra Logistics) |
 
 ---
 
@@ -187,21 +151,35 @@ PORT=5000
 JWT_SECRET=your-super-secret-key-change-in-prod
 JWT_EXPIRES_IN=7d
 DB_PATH=./warehouseiq.db
-FRONTEND_URL=http://localhost:5173
-NODE_ENV=development
+FRONTEND_URL=https://warehouseiqd.netlify.app
+NODE_ENV=production
+```
+
+### Frontend `.env`
+```env
+VITE_API_URL=https://warehouseiqd.onrender.com/api
 ```
 
 ---
 
-## 🚢 Production Deployment
+## 🚢 Deployment
 
-1. Set `NODE_ENV=production` and a strong `JWT_SECRET`
-2. Build frontend: `cd frontend && npm run build`
-3. Serve the `frontend/dist` folder as static files from Express:
-   ```js
-   app.use(express.static(path.join(__dirname, '../frontend/dist')));
-   ```
-4. Use a process manager: `pm2 start server.js --name warehouseiq`
+| Service | Platform | URL |
+|---------|----------|-----|
+| Frontend | Netlify | https://warehouseiqd.netlify.app |
+| Backend | Render | https://warehouseiqd.onrender.com |
+
+### Netlify Settings
+- Base directory: `frontend`
+- Build command: `npm run build`
+- Publish directory: `dist`
+- Env variable: `VITE_API_URL=https://warehouseiqd.onrender.com/api`
+
+### Render Settings
+- Root directory: `backend`
+- Build command: `npm install`
+- Start command: `npm start`
+- Node version: `20`
 
 ---
 
