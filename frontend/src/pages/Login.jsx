@@ -75,9 +75,9 @@ export default function Login() {
           <p className="text-xs text-slate-500 mb-3 font-semibold uppercase tracking-wider">Demo Credentials</p>
           <div className="space-y-2">
             {[
-              { role: 'Admin', email: 'admin@warehouseiq.com', pw: 'Admin@123', color: 'text-brand-400' },
-              { role: 'Manager', email: 'manager@warehouseiq.com', pw: 'Manager@123', color: 'text-emerald-400' },
-              { role: 'Staff', email: 'staff@warehouseiq.com', pw: 'Staff@123', color: 'text-yellow-400' },
+              { role: 'Admin', email: 'sivadandem7@warehouseiq.com', pw: 'Admin@123', color: 'text-brand-400' },
+              { role: 'Manager', email: 'kutty@warehouseiq.com', pw: 'Manager@123', color: 'text-emerald-400' },
+              { role: 'Staff', email: 'nitin@warehouseiq.com', pw: 'Staff@123', color: 'text-yellow-400' },
             ].map(d => (
               <button key={d.role} onClick={() => fill(d.email, d.pw)}
                 className="w-full flex items-center justify-between px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition-colors group">

@@ -12,7 +12,7 @@ initializeDatabase();
 const bcrypt = require('bcryptjs');
 const db = getDb();
 const userCount = db.prepare('SELECT COUNT(*) as count FROM users').get();
-if (true) {
+if (userCount.count === 0) {
   console.log('🌱 No data found, seeding database...');
 
   // Clear existing data
